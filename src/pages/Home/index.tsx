@@ -13,7 +13,7 @@ function Home() {
   return (
     <>
       <DataList value={firstCategory} onClick={onClick} />
-      <CategoryAdd category={'firstCategory'}/>
+      <CategoryAdd category={"firstCategory"} />
     </>
   );
 }
