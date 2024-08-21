@@ -1,21 +1,34 @@
 import { useEffect, useState } from "react";
-import DataListItem from "./components/DataListItem";
-import Button from "../Button/Button";
-import CategoryAdd from "../Category/CategoryAdd";
+import DataItem from "./components/DataItem";
+import "./style.scss";
 
 function DataList({ value, onClick }) {
   const [dataList, setDataList] = useState([]);
   console.log("데이터리스트", dataList);
 
+  const handleClick = (e) => {
+    onClick(e.target.value);
+  };
+
   useEffect(() => {
     setDataList(value);
   }, [value]);
   return (
-    <div className="dataList-container">
+    <div className="dataList">
       {dataList.map((item) => (
-        <div>
-          <DataListItem key={item.id} {...item} onClick={onClick} />
-        </div>
+        <DataItem
+          key={item.id}
+          name={item.name}
+          {...item}
+          onClick={() =>
+            handleClick({
+              target: {
+                name: item.name,
+                value: item.id,
+              },
+            })
+          }
+        />
       ))}
     </div>
   );

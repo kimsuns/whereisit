@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
+import "./style.scss";
 import logo from "../../assets/Logo.svg";
 
 function Header() {
   return (
-    <>
-      <Link to={"/"}>{/* <img src={logo} /> */} 홈으로</Link>
+    <div className="header">
+      <Link to={"/"}>{<img src={logo} className="logo" />}</Link>
       <input placeholder="검색창" />
-    </>
+    </div>
   );
 }
 

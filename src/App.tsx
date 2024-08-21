@@ -26,7 +26,7 @@ const testData = [
 
 function App() {
   const [data, dataDispatch] = useReducer(reducer, {
-    firstCategory: testData,
+    firstCategory: [],
     secondCategory: [],
     items: [],
   });
@@ -41,11 +41,22 @@ function App() {
     const list = ["firstCategory", "secondCategory", "items"];
 
     list.map((item) => {
-      const localData = localStorage.getItem(item);
+      const localData = JSON.parse(localStorage.getItem(item));
+      let maxId = 0;
+
+      console.log("로컬데이터", localData);
 
       if (!Array.isArray(localData)) {
         return;
       }
+
+      localData.forEach((item) => {
+        if (Number(item.id) > Number(maxId)) {
+          maxId = item.id;
+        }
+      });
+
+      idRef.current[item] = maxId;
 
       dataDispatch({
         type: "INIT",
